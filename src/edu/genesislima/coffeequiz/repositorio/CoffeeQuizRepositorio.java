@@ -20,7 +20,7 @@ public class CoffeeQuizRepositorio {
 			
 			if(quizzes.get(i).getId() ==  coffeeQuiz.getId()) {
 			   	quizzes.get(i).setPergunta(coffeeQuiz.getPergunta());
-			   	quizzes.get(i).setRespostas(coffeeQuiz.getRespostas());
+			   	quizzes.get(i).setAssertivas(coffeeQuiz.getAssertivas());
 
 			}
 		}
@@ -48,16 +48,18 @@ public class CoffeeQuizRepositorio {
 	
 	private boolean verificaQuantidadeRespostas(CoffeeQuiz coffeeQuiz) throws CoffeeQuizException {
 		
-		if(coffeeQuiz.getRespostas().size() == 5) {
+		if(coffeeQuiz.getAssertivas().size() == 5) {
 			return true;
 		}
 		
-		if(coffeeQuiz.getRespostas().size() < 5 || coffeeQuiz.getRespostas().size() > 5) {			
+		if(coffeeQuiz.getAssertivas().size() < 5 || coffeeQuiz.getAssertivas().size() > 5) {			
 			throw new CoffeeQuizException("Você deve fornecer 5 respostas para o Quiz. "
-					+ "Somente "+coffeeQuiz.getRespostas().size()+" respostas foram fornecidas."
+					+ "Somente "+coffeeQuiz.getAssertivas().size()+" respostas foram fornecidas."
 					);			
 		}
 		return false;
 	}
+	
+
 	
 }

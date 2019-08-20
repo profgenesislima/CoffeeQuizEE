@@ -6,7 +6,8 @@ public class CoffeeQuiz {
 
 	private int id;
 	private String pergunta;
-	private Map<String,String> respostas;
+	private Map<String,String> assertivas;
+	private String resposta;
 	private String respostaCorreta;
 	
 	public int getId() {
@@ -21,11 +22,12 @@ public class CoffeeQuiz {
 	public void setPergunta(String pergunta) {
 		this.pergunta = pergunta;
 	}
-	public Map<String,String> getRespostas() {
-		return respostas;
+
+	public Map<String, String> getAssertivas() {
+		return assertivas;
 	}
-	public void setRespostas(Map<String,String> respostas) {
-		this.respostas = respostas;
+	public void setAssertivas(Map<String, String> assertivas) {
+		this.assertivas = assertivas;
 	}
 	public String getRespostaCorreta() {
 		return respostaCorreta;
@@ -52,6 +54,12 @@ public class CoffeeQuiz {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+	public String getResposta() {
+		return resposta;
+	}
+	public void setResposta(String resposta) {
+		this.resposta = resposta;
 	}
 	
 	

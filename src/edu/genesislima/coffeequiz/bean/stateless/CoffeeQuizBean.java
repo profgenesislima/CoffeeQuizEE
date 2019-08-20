@@ -1,4 +1,6 @@
-package edu.genesislima.coffeequiz.bean;
+package edu.genesislima.coffeequiz.bean.stateless;
+
+import java.util.List;
 
 import javax.ejb.Stateless;
 
@@ -50,6 +52,12 @@ public class CoffeeQuizBean implements CoffeeQuizDaoLocal,CoffeeQuizDaoRemote {
 	public void atualizarCoffeeQuiz(CoffeeQuiz coffeeQuiz) {
 		coffeeQuizRepositorio.atualizarCoffeeQuiz(coffeeQuiz);
 		
+	}
+
+	@Override
+	public List<CoffeeQuiz> listarTodos() {
+		
+		return coffeeQuizRepositorio.listarCoffeeQuizzes();
 	}
     
     

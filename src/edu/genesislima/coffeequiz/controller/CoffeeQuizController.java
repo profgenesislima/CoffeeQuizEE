@@ -3,10 +3,10 @@ package edu.genesislima.coffeequiz.controller;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import edu.genesislima.coffeequiz.bean.CoffeeQuizBean;
 import edu.genesislima.coffeequiz.dao.CoffeeQuizDaoLocal;
 import edu.genesislima.coffeequiz.model.CoffeeQuiz;
 
@@ -16,6 +16,9 @@ public class CoffeeQuizController {
 
 	@EJB
 	private CoffeeQuizDaoLocal coffeeQuizBean;
+	
+	@ManagedProperty(value = "#{coffeeQuiz}")
+	private CoffeeQuiz coffeeQuiz = new CoffeeQuiz();
 		
 	public CoffeeQuizDaoLocal getCoffeeQuizBean() {
 		return coffeeQuizBean;

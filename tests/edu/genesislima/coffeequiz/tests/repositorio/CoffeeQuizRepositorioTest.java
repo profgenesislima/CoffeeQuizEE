@@ -20,6 +20,10 @@ public class CoffeeQuizRepositorioTest {
 	public ExpectedException exceptionRule = ExpectedException.none();
 	
 
+	public boolean testaRespostaCorreta(CoffeeQuiz pergunta, CoffeeQuiz resposta) {
+		return pergunta.getResposta().equals(resposta.getRespostaCorreta());
+	}
+	
 	
 	public CoffeeQuizRepositorio registrarQuizTeste() throws CoffeeQuizException {
 		CoffeeQuizRepositorio repo = new CoffeeQuizRepositorio();
@@ -38,7 +42,12 @@ public class CoffeeQuizRepositorioTest {
 		 
 		 coffeeQuiz.setRespostaCorreta("e");
 		 
-		coffeeQuiz.setRespostas(respostas);
+		coffeeQuiz.setAssertivas(respostas);
+		
+		coffeeQuiz.setResposta("e");
+		
+		
+		
 		
 		repo.salvarCoffeeQuiz(coffeeQuiz);
 		
@@ -55,9 +64,12 @@ public class CoffeeQuizRepositorioTest {
 		 
 		 cafeComLeite.setRespostaCorreta("c");
 		 
-		 cafeComLeite.setRespostas(respostas1);
+		 cafeComLeite.setAssertivas(respostas1);
 		
 		repo.salvarCoffeeQuiz(cafeComLeite);
+		
+		
+		
 		
 		return repo;
 	}
@@ -101,13 +113,13 @@ public class CoffeeQuizRepositorioTest {
 	
 	private boolean verificaQuantidadeRespostas(CoffeeQuiz coffeeQuiz) throws CoffeeQuizException {
 		
-		if(coffeeQuiz.getRespostas().size() == 5) {
+		if(coffeeQuiz.getAssertivas().size() == 5) {
 			return true;
 		}
 		
-		if(coffeeQuiz.getRespostas().size() < 5 || coffeeQuiz.getRespostas().size() > 5) {
+		if(coffeeQuiz.getAssertivas().size() < 5 || coffeeQuiz.getAssertivas().size() > 5) {
 			throw new CoffeeQuizException("Você deve fornecer 5 respostas para o Quiz. "
-					+ "Somente "+coffeeQuiz.getRespostas().size()+" respostas foram fornecidas."
+					+ "Somente "+coffeeQuiz.getAssertivas().size()+" respostas foram fornecidas."
 					);			
 		}
 		return false;

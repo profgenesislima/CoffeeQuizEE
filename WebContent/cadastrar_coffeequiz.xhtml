@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta charset="ISO-8859-1"> 
+ </meta>
+ <title>Cadastrar Coffee Quiz!</title>
+   </head>
+<body>
+  <h3>Pergunta:</h3>
+  <h:inputText id="pergunta" name="#{coffeeQuiz.pergunta}" />
+  <h:commandButton value="Save" action="#{coffeeQuizController.coffeeQuizBean.cadastrarCoffeeQuiz}"/>
+</body>
+</html>
