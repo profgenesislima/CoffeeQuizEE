@@ -11,6 +11,11 @@ import edu.genesislima.coffeequiz.model.Usuario;
 public class LoginBean implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Usuario usuario = new Usuario();
 //	private UsuarioDao dao = new UsuarioDao();
 	

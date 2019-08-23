@@ -3,7 +3,6 @@ package edu.genesislima.coffeequiz.controller;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -17,14 +16,14 @@ public class CoffeeQuizController {
 	@EJB
 	private CoffeeQuizDaoLocal coffeeQuizBean;
 	
-	@ManagedProperty(value = "#{coffeeQuiz}")
+	
 	private CoffeeQuiz coffeeQuiz = new CoffeeQuiz();
 		
 	public CoffeeQuizDaoLocal getCoffeeQuizBean() {
 		return coffeeQuizBean;
 	}
 	
-	public String cadastrarCoffeeQuiz(CoffeeQuiz coffeeQuiz) {
+	public String cadastrarCoffeeQuiz() {		
 		FacesContext	facesContext	= FacesContext.getCurrentInstance();
 		if(coffeeQuiz!=null) {
 		this.coffeeQuizBean.cadastrarCoffeeQuiz(coffeeQuiz);		

@@ -2,6 +2,8 @@ package edu.genesislima.coffeequiz.bean.singleton;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.ejb.ConcurrencyManagement;
+import javax.ejb.ConcurrencyManagementType;
 import javax.ejb.EJB;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
@@ -10,10 +12,12 @@ import javax.ejb.Startup;
 
 import edu.genesislima.coffeequiz.dao.ContadorDao;
 
+
 @Singleton(name = "CoffeeQuizContaJogadores")
 @Startup
+@ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class CoffeeQuizContaJogadores {
-
+      
 	@EJB
 	private ContadorDao contadorDAO;
 	
@@ -31,11 +35,11 @@ public class CoffeeQuizContaJogadores {
 		return contadordeJogadoresOnline;		
 	}
 	
-	public void reiniciarContador() {
+	private void reiniciarContador() {
 		contadordeJogadoresOnline = 0;
 	}
 	
-	
+	@Lock(LockType.READ)
 	public int getTotaldeJogadores() {
 		return totaldeJogadores;
 	}
