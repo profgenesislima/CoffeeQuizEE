@@ -16,7 +16,6 @@ import edu.genesislima.coffeequiz.model.Jogador;
 @Stateless(name = "DesafioBean")
 @Local
 public class DesafioBean {
-
 	
 	@Resource(mappedName = "DesafioMessageQueueConnectionFactory")
 	private TopicConnectionFactory desafioMessageTopicCF;
@@ -24,9 +23,7 @@ public class DesafioBean {
 	private Topic desafioTopic;
 	
 	
-	public String enviarDesafio(int scoreFinal, Jogador desafiante, String emailAdversario) {
-		String from = desafiante.getNome();
-		String to = emailAdversario;
+	public String enviarDesafio(int scoreFinal, Jogador desafiante, String emailAdversario) {		
 		String content = "Olá! "+desafiante.getNome()+" gostaria de te desafiar a bater meu score"+desafiante.getMaiorScore()+"."
 				+ "acesse http://cooffeequiz.play e derrote seu desafiante.";
 		System.out.println("Before status TopicCF connection");
@@ -42,8 +39,8 @@ public class DesafioBean {
 			createProducer(desafioTopic);
 			System.out.println("created producer");
 			MapMessage message = topicSession.createMapMessage();
-			message.setStringProperty("from", from);
-			message.setStringProperty("to", to);
+			message.setStringProperty("emailFrom", desafiante.getNome());
+			message.setStringProperty("emailTo", emailAdversario);
 			message.setStringProperty("subject", "Você foi desafiado no jogo Coffee Quiz!");
 			message.setStringProperty("content", content);
 			System.out.println("before send");

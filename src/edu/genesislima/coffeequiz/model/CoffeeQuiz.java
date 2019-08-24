@@ -1,12 +1,12 @@
 package edu.genesislima.coffeequiz.model;
 
-import java.util.Map;
+import java.util.List;
 
 public class CoffeeQuiz {
 
 	private int id;
 	private String pergunta;
-	private Map<String,String> assertivas;
+	private List<String> assertivas;
 	private String resposta;
 	private String respostaCorreta;
 	
@@ -23,10 +23,11 @@ public class CoffeeQuiz {
 		this.pergunta = pergunta;
 	}
 
-	public Map<String, String> getAssertivas() {
+
+	public List<String> getAssertivas() {
 		return assertivas;
 	}
-	public void setAssertivas(Map<String, String> assertivas) {
+	public void setAssertivas(List<String> assertivas) {
 		this.assertivas = assertivas;
 	}
 	public String getRespostaCorreta() {

@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Rule;
@@ -33,14 +35,14 @@ public class CoffeeQuizRepositorioTest {
 				+ "sem qualquer mistura com leite ou outro ingrediente. Possuo uma bela "
 				+ "espuma que se forma sobre mim. Esta espuma é originária do "
 				+ "próprio grão moído, e é produzida no momento da extração. Que tipo de café sou eu? ");
-		Map<String,String> respostas = new HashMap<String,String>(); 
-		 respostas.put("a", "capuccino");
-		 respostas.put("b", "mocha");
-		 respostas.put("c", "pingado");
-		 respostas.put("d", "macchiato");
-		 respostas.put("e", "expresso");
+		List<String> respostas = new ArrayList<String>(); 
+		 respostas.add("capuccino");
+		 respostas.add("mocha");
+		 respostas.add("pingado");
+		 respostas.add("macchiato");
+		 respostas.add("expresso");
 		 
-		 coffeeQuiz.setRespostaCorreta("e");
+		 coffeeQuiz.setRespostaCorreta("expresso");
 		 
 		coffeeQuiz.setAssertivas(respostas);
 		
@@ -55,14 +57,14 @@ public class CoffeeQuizRepositorioTest {
 		cafeComLeite.setId(2);
 		cafeComLeite.setPergunta("Não guardo segredos. Sou servido na mesma proporção"
 				+ "que meu companheiro, fervido e aquecido. Que tipo de café sou eu? ");
-		Map<String,String> respostas1 = new HashMap<String,String>(); 
-		 respostas1.put("a", "capuccino");
-		 respostas1.put("b", "mocha");
-		 respostas1.put("c", "pingado");
-		 respostas1.put("d", "macchiato");
-		 respostas1.put("e", "expresso");
+		List<String> respostas1 = new ArrayList<String>(); 
+		 respostas1.add("capuccino");
+		 respostas1.add("mocha");
+		 respostas1.add("pingado");
+		 respostas1.add("macchiato");
+		 respostas1.add("expresso");
 		 
-		 cafeComLeite.setRespostaCorreta("c");
+		 cafeComLeite.setRespostaCorreta("pingado");
 		 
 		 cafeComLeite.setAssertivas(respostas1);
 		

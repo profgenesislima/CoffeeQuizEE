@@ -8,12 +8,18 @@ import javax.jms.Message;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 @MessageDriven(activationConfig = {
 		@ActivationConfigProperty(propertyName = "destinationName",
 				propertyValue = "DesafioMessageTopic"),
 		@ActivationConfigProperty(propertyName = "destinationType",
-		        propertyValue = "javax.jms.Topic")
-},mappedName = "DesafioMessageTopic")
+		        propertyValue = "javax.jms.Topic"),
+		@ActivationConfigProperty(propertyName="acknowledgeMode",
+		propertyValue="Auto-acknowledge"),
+		@ActivationConfigProperty(propertyName = "messageSelector",
+		propertyValue = "emailFrom != '' AND emailTo != ''"),
+		@ActivationConfigProperty(propertyName="subscriptionDurability",
+		propertyValue="Durable")},mappedName = "DesafioMessageTopic")
 public class MDBDesafio	implements javax.jms.MessageListener {
 
 	@Resource(name="mail/wineappMail" )
@@ -25,8 +31,8 @@ public class MDBDesafio	implements javax.jms.MessageListener {
 		try {
 			if (message instanceof MapMessage) {
 			MapMessage orderMessage = (MapMessage)message;
-			String from = orderMessage.getStringProperty("from");
-			String to = orderMessage.getStringProperty("to");
+			String from = orderMessage.getStringProperty("emailFrom");
+			String to = orderMessage.getStringProperty("emailTo");
 			String subject = orderMessage.getStringProperty("subject");
 			String content = orderMessage.getStringProperty("content");
 			javax.mail.Message msg = new MimeMessage(ms);
@@ -47,5 +53,4 @@ public class MDBDesafio	implements javax.jms.MessageListener {
 			ex.printStackTrace();
 			}
 			}
-
 }
