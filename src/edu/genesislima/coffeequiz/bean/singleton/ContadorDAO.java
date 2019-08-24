@@ -1,11 +1,9 @@
 package edu.genesislima.coffeequiz.bean.singleton;
 
-import javax.ejb.DependsOn;
 import javax.ejb.Singleton;
 
 import edu.genesislima.coffeequiz.dao.ContadorDao;
 @Singleton
-@DependsOn("CoffeeQuizContaJogadores")
 public class ContadorDAO implements ContadorDao {
 
 	

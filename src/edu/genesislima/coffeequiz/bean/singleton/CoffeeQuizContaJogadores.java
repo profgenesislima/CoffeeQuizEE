@@ -13,14 +13,11 @@ import javax.ejb.Startup;
 import edu.genesislima.coffeequiz.dao.ContadorDao;
 
 
-@Singleton(name = "CoffeeQuizContaJogadores")
+@Singleton
 @Startup
-@ConcurrencyManagement(ConcurrencyManagementType.BEAN)
+@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class CoffeeQuizContaJogadores {
-      
-	@EJB
-	private ContadorDao contadorDAO;
-	
+     
 	private int contadordeJogadoresOnline = 0;
 	private int totaldeJogadores = 0;
 	
@@ -34,15 +31,20 @@ public class CoffeeQuizContaJogadores {
 	public int contajogadoresOnLine() {
 		return contadordeJogadoresOnline;		
 	}
+
+	@Lock(LockType.READ)
+	public int getTotaldeJogadores() {
+		return totaldeJogadores;
+	}
+	
+	@EJB
+	private ContadorDao contadorDAO;
 	
 	private void reiniciarContador() {
 		contadordeJogadoresOnline = 0;
 	}
 	
-	@Lock(LockType.READ)
-	public int getTotaldeJogadores() {
-		return totaldeJogadores;
-	}
+	
 
 	@PostConstruct
 	private void inicializarContador() {

@@ -2,7 +2,6 @@ package edu.genesislima.coffeequiz.bean.stateful;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -14,6 +13,7 @@ import javax.ejb.Remote;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
+import edu.genesislima.coffeequiz.bean.singleton.CoffeeQuizContaJogadores;
 import edu.genesislima.coffeequiz.dao.CoffeeQuizDaoLocal;
 import edu.genesislima.coffeequiz.model.CoffeeQuiz;
 
@@ -22,14 +22,18 @@ import edu.genesislima.coffeequiz.model.CoffeeQuiz;
 @Stateful
 public class CoffeeQuizJogar {	
 	
+	@EJB
+	CoffeeQuizContaJogadores contadorDeJogadoresBean;
+	
 	@PostConstruct
 	private void inicializaListaQuiz() {
+		contadorDeJogadoresBean.incrementaContador();
 		this.quizzes = coffeeQuizBean.listarTodos();
 		this.respondidas = new ArrayList<CoffeeQuiz>();
 	}
 	
 	@PreDestroy
-	private void limpaListaQuiz() {
+	private void limpaListaQuiz() {		
 		this.quizzes.clear();
 		this.respondidas.clear();
 	}
