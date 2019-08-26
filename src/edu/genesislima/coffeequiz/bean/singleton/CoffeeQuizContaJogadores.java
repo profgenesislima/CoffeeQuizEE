@@ -49,7 +49,7 @@ public class CoffeeQuizContaJogadores {
 	@PostConstruct
 	private void inicializarContador() {
 		reiniciarContador();
-		totaldeJogadores = contadorDAO.pegaUltimoValorSalvo();
+		totaldeJogadores = contadorDAO.pegaUltimoContador().getTotal();
 	
 	}
 	

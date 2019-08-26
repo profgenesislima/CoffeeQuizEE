@@ -11,6 +11,8 @@ import javax.ejb.DependsOn;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 
 @Singleton
@@ -20,9 +22,17 @@ public class CoffeeQuizContaJogadoresLogger {
 	@Inject
 	CoffeeQuizContaJogadores contaJogadores;
 	
-	
+	@PersistenceContext
+	EntityManager entitymanager;
 	
 	private final Logger LOGGER  = Logger.getLogger("CoffeeQuizPlayerCount.class");
+	
+	@Schedule(dayOfWeek="*", hour = "23", minute = "59", info = "Registra jogadores diariamente.")
+    private void registraJogadoresPorDia() {
+   	
+   	 LOGGER.log(Level.INFO, LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+""
+    	 		+ " Quantidade de jogadores diários: "+contaJogadores.getTotaldeJogadores());
+    }
 	
 	
      @PostConstruct
@@ -38,10 +48,5 @@ public class CoffeeQuizContaJogadoresLogger {
     	 		+ " Quantidade de jogadores ao finalizar a aplicação "+contaJogadores.getTotaldeJogadores());
     	 
      }
-     @Schedule(dayOfWeek="*", hour = "23", minute = "59", info = "Registra jogadores diariamente.")
-     private void registraJogadoresPorDia() {
-    	
-    	 LOGGER.log(Level.INFO, LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+""
-     	 		+ " Quantidade de jogadores diários: "+contaJogadores.getTotaldeJogadores());
-     }
+     
 }
