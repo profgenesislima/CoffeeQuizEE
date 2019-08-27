@@ -7,14 +7,14 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 
-import edu.genesislima.coffeequiz.dao.CoffeeQuizDaoLocal;
-import edu.genesislima.coffeequiz.dao.CoffeeQuizDaoRemote;
 import edu.genesislima.coffeequiz.model.CoffeeQuiz;
 import edu.genesislima.coffeequiz.repositorio.CoffeeQuizRepositorio;
+import edu.genesislima.coffeequiz.service.CoffeeQuizServiceLocal;
+import edu.genesislima.coffeequiz.service.CoffeeQuizServiceRemote;
 import edu.genesislima.coffeequiz.tests.repositorio.CoffeeQuizException;
 
 @Stateless
-public class CoffeeQuizBean implements CoffeeQuizDaoLocal,CoffeeQuizDaoRemote {
+public class CoffeeQuizBean implements CoffeeQuizServiceLocal,CoffeeQuizServiceRemote {
 
 	private CoffeeQuizRepositorio coffeeQuizRepositorio = new CoffeeQuizRepositorio();
 
@@ -88,5 +88,24 @@ public class CoffeeQuizBean implements CoffeeQuizDaoLocal,CoffeeQuizDaoRemote {
 	}
     
 
-	
+//	@PostConstruct
+//	private void inicializarListaCoffeeQuiz() throws CoffeeQuizException {    	
+//		CoffeeQuiz coffeeQuiz = new CoffeeQuiz();
+//		coffeeQuiz.setId(1);
+//		coffeeQuiz.setPergunta("Sou servido apenas com o mais puro café."
+//				+ "sem qualquer mistura com leite ou outro ingrediente. Possuo uma bela "
+//				+ "espuma que se forma sobre mim. Esta espuma é originária do "
+//				+ "próprio grão moído, e é produzida no momento da extração. Que tipo de café sou eu? ");
+//		List<String> respostas = new ArrayList<String>(); 
+//		 respostas.add("capuccino");
+//		 respostas.add("mocha");
+//		 respostas.add("pingado");
+//		 respostas.add("macchiato");
+//		 respostas.add("expresso");		 
+//		 coffeeQuiz.setRespostaCorreta("expresso");		 
+//		coffeeQuiz.setAssertivas(respostas);			
+//		coffeeQuizRepositorio.salvarCoffeeQuiz(coffeeQuiz);
+//		
+//		
+//	}
 }

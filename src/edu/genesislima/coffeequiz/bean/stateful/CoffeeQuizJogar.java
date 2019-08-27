@@ -14,8 +14,8 @@ import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 import edu.genesislima.coffeequiz.bean.singleton.CoffeeQuizContaJogadores;
-import edu.genesislima.coffeequiz.dao.CoffeeQuizDaoLocal;
 import edu.genesislima.coffeequiz.model.CoffeeQuiz;
+import edu.genesislima.coffeequiz.service.CoffeeQuizServiceLocal;
 
 @Local({CoffeeQuizJogarLocal.class})
 @Remote({CoffeeQuizJogarRemote.class})
@@ -55,7 +55,7 @@ public class CoffeeQuizJogar {
 	
 	
 	@EJB
-	CoffeeQuizDaoLocal coffeeQuizBean;
+	CoffeeQuizServiceLocal coffeeQuizBean;
 
 	private List<CoffeeQuiz> quizzes;
 	

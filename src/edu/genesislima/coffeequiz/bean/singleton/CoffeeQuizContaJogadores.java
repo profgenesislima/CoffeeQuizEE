@@ -18,6 +18,26 @@ import edu.genesislima.coffeequiz.dao.ContadorDao;
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class CoffeeQuizContaJogadores {
      
+	@EJB
+	private ContadorDao contadorDAO;
+	
+	private void reiniciarContador() {
+		contadordeJogadoresOnline = 0;
+	}
+	
+	@PostConstruct
+	private void inicializarContador() {
+		reiniciarContador();
+		totaldeJogadores = contadorDAO.pegaUltimoContador().getTotal();
+	
+	}
+	
+	@PreDestroy
+	private void finalizarContador() {
+		contadorDAO.salvar(totaldeJogadores);
+	}
+	
+	
 	private int contadordeJogadoresOnline = 0;
 	private int totaldeJogadores = 0;
 	
@@ -37,24 +57,5 @@ public class CoffeeQuizContaJogadores {
 		return totaldeJogadores;
 	}
 	
-	@EJB
-	private ContadorDao contadorDAO;
 	
-	private void reiniciarContador() {
-		contadordeJogadoresOnline = 0;
-	}
-	
-	
-
-	@PostConstruct
-	private void inicializarContador() {
-		reiniciarContador();
-		totaldeJogadores = contadorDAO.pegaUltimoContador().getTotal();
-	
-	}
-	
-	@PreDestroy
-	private void finalizarContador() {
-		contadorDAO.salvar(totaldeJogadores);
-	}
 }

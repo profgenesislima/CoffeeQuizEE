@@ -6,20 +6,20 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import edu.genesislima.coffeequiz.dao.CoffeeQuizDaoLocal;
 import edu.genesislima.coffeequiz.model.CoffeeQuiz;
+import edu.genesislima.coffeequiz.service.CoffeeQuizServiceLocal;
 
 @Named
 @RequestScoped
 public class CoffeeQuizController {
 
 	@EJB
-	private CoffeeQuizDaoLocal coffeeQuizBean;
+	private CoffeeQuizServiceLocal coffeeQuizBean;
 	
 	
 	private CoffeeQuiz coffeeQuiz = new CoffeeQuiz();
 		
-	public CoffeeQuizDaoLocal getCoffeeQuizBean() {
+	public CoffeeQuizServiceLocal getCoffeeQuizBean() {
 		return coffeeQuizBean;
 	}
 	
