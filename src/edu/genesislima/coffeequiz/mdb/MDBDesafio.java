@@ -8,18 +8,16 @@ import javax.jms.Message;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+//@ActivationConfigProperty(propertyName="subscriptionDurability",propertyValue="Durable")},mappedName = "java:/DesafioMessageTopic"
 @MessageDriven(activationConfig = {
-		@ActivationConfigProperty(propertyName = "destinationName",
-				propertyValue = "DesafioMessageTopic"),
+		@ActivationConfigProperty(propertyName = "destination",
+				propertyValue = "java:/DesafioMessageTopic"),
 		@ActivationConfigProperty(propertyName = "destinationType",
 		        propertyValue = "javax.jms.Topic"),
 		@ActivationConfigProperty(propertyName="acknowledgeMode",
 		propertyValue="Auto-acknowledge"),
 		@ActivationConfigProperty(propertyName = "messageSelector",
-		propertyValue = "emailFrom != '' AND emailTo != ''"),
-		@ActivationConfigProperty(propertyName="subscriptionDurability",
-		propertyValue="Durable")},mappedName = "DesafioMessageTopic")
+		propertyValue = "emailFrom <> '' AND emailTo <> ''")})
 public class MDBDesafio	implements javax.jms.MessageListener {
 
 	@Resource(name="mail/wineappMail" )

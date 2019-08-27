@@ -1,7 +1,12 @@
 package edu.genesislima.coffeequiz.bean.stateful;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -21,38 +26,44 @@ import edu.genesislima.coffeequiz.service.CoffeeQuizServiceLocal;
 @Remote({CoffeeQuizJogarRemote.class})
 @Stateful
 public class CoffeeQuizJogar {	
-	
-	@EJB
-	CoffeeQuizContaJogadores contadorDeJogadoresBean;
+
+	private final Logger LOGGER  = Logger.getLogger("CoffeeQuizJogar.class");
 	
 	@PostConstruct
 	private void inicializaListaQuiz() {
 		contadorDeJogadoresBean.incrementaContador();
 		this.quizzes = coffeeQuizBean.listarTodos();
-		this.respondidas = new ArrayList<CoffeeQuiz>();
-	}
+		this.respondidas = new ArrayList<CoffeeQuiz>();}
 	
 	@PreDestroy
 	private void limpaListaQuiz() {		
 		this.quizzes.clear();
-		this.respondidas.clear();
-	}
+		this.respondidas.clear();}
 	
 	@PrePassivate	
 	private void abandonaJogo() {
-		System.out.println("O jogador respondeu "+quizzes.size()+" perguntas e foi tomar um café! :)");
-	}
+		LOGGER.log(Level.INFO, LocalDate.now().
+		format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+""
+    	+ " O jogador respondeu "+quizzes.size()+" e parou de jogar às "
+    	+pegaHoraAtual());}
 	
 	@PostActivate
 	private void retornaJogo(){
-		System.out.println("O jogador respondeu "+quizzes.size()+" e voltou do café! :p");
-	}
+		LOGGER.log(Level.INFO, LocalDate.now()
+		.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+""
+    	+ " O jogador respondeu "+quizzes.size()+" e retornou ao jogo às "
+    	+pegaHoraAtual());}
 	
 	@Remove
 	public void encerraJogo() {
-		System.out.println("O total de pontos do jogador foi "+score);
-	}
+		LOGGER.log(Level.INFO, LocalDate.now()
+		.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+""
+    	+ " O jogador respondeu "+quizzes.size()+" e abandonou o jogo às "
+    	+pegaHoraAtual());}
 	
+	
+	@EJB
+	CoffeeQuizContaJogadores contadorDeJogadoresBean;
 	
 	@EJB
 	CoffeeQuizServiceLocal coffeeQuizBean;
@@ -96,7 +107,11 @@ public class CoffeeQuizJogar {
 		return score;
 	}
 	
-	
+	private String pegaHoraAtual() {
+		return +LocalTime.now().getHour()+":"
+		    	+LocalTime.now().getMinute()+":"
+		    	+LocalTime.now().getSecond();
+	}
 	
 
 }

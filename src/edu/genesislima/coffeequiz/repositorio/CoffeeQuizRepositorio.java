@@ -59,6 +59,11 @@ public class CoffeeQuizRepositorio {
 		}
 		return false;
 	}
+
+	public List<CoffeeQuiz> getQuizzes() {
+		return quizzes;
+	}
+	
 	
 
 	

@@ -19,29 +19,30 @@ public class CoffeeQuizBean implements CoffeeQuizServiceLocal,CoffeeQuizServiceR
 	private CoffeeQuizRepositorio coffeeQuizRepositorio = new CoffeeQuizRepositorio();
 
     @PostConstruct
-	private void inicializarListaCoffeeQuiz() throws CoffeeQuizException {    	
+	private void inicializarListaCoffeeQuiz() {    	
 		CoffeeQuiz coffeeQuiz = new CoffeeQuiz();
 		coffeeQuiz.setId(1);
-		coffeeQuiz.setPergunta("Sou servido apenas com o mais puro café."
-				+ "sem qualquer mistura com leite ou outro ingrediente. Possuo uma bela "
-				+ "espuma que se forma sobre mim. Esta espuma é originária do "
-				+ "próprio grão moído, e é produzida no momento da extração. Que tipo de café sou eu? ");
+		coffeeQuiz.setPergunta("É um café aguado. "
+				+ "Ótimo para para tomar em proporções maiores.");
 		List<String> respostas = new ArrayList<String>(); 
 		 respostas.add("capuccino");
 		 respostas.add("mocha");
 		 respostas.add("pingado");
 		 respostas.add("macchiato");
-		 respostas.add("expresso");		 
-		 coffeeQuiz.setRespostaCorreta("expresso");		 
+		 respostas.add("americano");		 
+		 coffeeQuiz.setRespostaCorreta("americano");		 
 		coffeeQuiz.setAssertivas(respostas);			
-		coffeeQuizRepositorio.salvarCoffeeQuiz(coffeeQuiz);
-		
-		
+		try {
+			coffeeQuizRepositorio.salvarCoffeeQuiz(coffeeQuiz);
+		} catch (CoffeeQuizException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
     
     @PreDestroy
     private void limparListaCoffeeQuiz() {
-    	coffeeQuizRepositorio.listarCoffeeQuizzes().clear();
+    	coffeeQuizRepositorio.getQuizzes().clear();
     }
     
 	

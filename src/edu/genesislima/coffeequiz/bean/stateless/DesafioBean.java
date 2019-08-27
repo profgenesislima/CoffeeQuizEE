@@ -17,9 +17,9 @@ import edu.genesislima.coffeequiz.model.Jogador;
 @Local
 public class DesafioBean {
 	
-	@Resource(mappedName = "DesafioMessageQueueConnectionFactory")
+	@Resource(mappedName = "java:/DesafioMessageTopicConnectionFactory")
 	private TopicConnectionFactory desafioMessageTopicCF;
-	@Resource(mappedName = "DesafioMessageTopic")
+	@Resource(mappedName = "java:/DesafioMessageTopic")
 	private Topic desafioTopic;
 	
 	
