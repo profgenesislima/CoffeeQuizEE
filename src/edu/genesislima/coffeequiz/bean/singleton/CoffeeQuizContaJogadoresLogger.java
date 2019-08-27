@@ -28,6 +28,7 @@ public class CoffeeQuizContaJogadoresLogger {
 	@PersistenceContext
 	EntityManager entityManager;
 	
+	private final Logger LOGGER  = Logger.getLogger("CoffeeQuizPlayerCount.class");
 	
 	@Schedule(dayOfWeek="*", hour = "23", minute = "59", info = "Registra jogadores diariamente.")
     private void registraJogadoresPorDia() {   	 
@@ -46,11 +47,14 @@ public class CoffeeQuizContaJogadoresLogger {
     
     }
 	
-	
+	public int pegaTotalJogadores() {
+		return entityManager.createQuery("select sum(c.total)"
+		 + " from Contador c ", Integer.class).getSingleResult();
+	}
 	
 	 //LOGGER.log(Level.INFO, LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+""
 	   	 		//+ " Quantidade de jogadores ao finalizar a aplicação "+contaJogadores.getTotaldeJogadores());
-	private final Logger LOGGER  = Logger.getLogger("CoffeeQuizPlayerCount.class");
+	
 	
 	
 	

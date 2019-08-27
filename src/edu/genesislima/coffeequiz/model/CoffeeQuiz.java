@@ -1,12 +1,13 @@
 package edu.genesislima.coffeequiz.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CoffeeQuiz {
 
 	private int id;
 	private String pergunta;
-	private List<String> assertivas;
+	private List<String> assertivas = new ArrayList<String>();
 	private String resposta;
 	private String respostaCorreta;
 	

@@ -9,8 +9,11 @@ import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import edu.genesislima.coffeequiz.dao.ContadorDao;
+import edu.genesislima.coffeequiz.model.Contador;
 
 
 @Singleton
@@ -20,6 +23,9 @@ public class CoffeeQuizContaJogadores {
      
 	@EJB
 	private ContadorDao contadorDAO;
+	
+	@PersistenceContext
+	EntityManager entityManager;
 	
 	private void reiniciarContador() {
 		contadordeJogadoresOnline = 0;
@@ -52,10 +58,11 @@ public class CoffeeQuizContaJogadores {
 		return contadordeJogadoresOnline;		
 	}
 
-	@Lock(LockType.READ)
 	public int getTotaldeJogadores() {
 		return totaldeJogadores;
 	}
+
+	
 	
 	
 }

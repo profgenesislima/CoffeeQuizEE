@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
   <title>CoffeeQuiz App</title>
 </h:head>
@@ -10,113 +11,44 @@
     <h2>Cadastro de Pergunta</h2>
         <table>
       <tr>
-        <td>Pergunta:</td>
-        <td>
-          <h:inputText label="Pergunta"
-                       id="pergunta" value="#{coffeeQuiz.pergunta}"
-                       required="true"/>
-                       <h:message for="pergunta" style="color: red"/>
-        </td>
+        <td>Pergunta:       
+          <h:inputTextarea rows="5" label="Pergunta"
+                       id="pergunta" value="#{coffeeQuizController.pergunta}"
+                       required="true" size="300"/>
+                       <h:message for="pergunta" style="color: red"/></td>
       </tr>
- 
-      <tr>
-        <td>Gender:</td>
-        <td>
-          <h:selectOneRadio label="Gender"
-                            id="gender" value="#{employeeBean.gender}" required="true">
-            <f:selectItem itemLabel="Male" itemValue="male" />
-            <f:selectItem itemLabel="Female" itemValue="female" />
-          </h:selectOneRadio>
-        <h:message for="gender" style="color: red"/>             
-        </td>
-      </tr>
-       
-      <tr>
-        <td>Date of Birth:</td>
-        <td>
-          <h:inputText label="Date of Birth"
-                       id="dob" value="#{employeeBean.dob}" required="true">
-            <f:convertDateTime pattern="MM-dd-yy" />
-          </h:inputText> (mm-dd-yy)
-          <h:message for="dob" style="color: red"/>
-        </td>
-      </tr>
- 
  <tr>
-        <td>Marital Status:</td>
-        <td>
-        <h:selectOneRadio label="Marital Status"
-                       id="mstatus" value="#{employeeBean.maritalStatus}" required="true">
-           <f:selectItem itemLabel="Single" itemValue="single" />
-           <f:selectItem itemLabel="Married" itemValue="married" />
-          </h:selectOneRadio>
-          <h:message for="mstatus" style="color: red"/>
+        <td>Assertiva 1:
+         <h:inputText  value="#{coffeeQuizController.assertivas[0]}"/>
         </td>
-      </tr>
-       
-      <tr>
-        <td>Address:</td>
-        <td>
-          <h:inputText label="Address"
-                       id="address" value="#{employeeBean.address}"
-                       required="true"/>
-          <h:message for="address" style="color: red"/>
-        </td>
-      </tr>
-       
-      <tr>
-        <td>Email Address:</td>
-        <td>
-          <h:inputText label="Email Address"
-                       id="email" value="#{employeeBean.emailAddress}" required="true"
-                       validator="#{employeeBean.validateEmail}"/>
-          <h:message for="email" style="color: red"/>
-        </td>
-      </tr>
-       
-      <tr>
-        <td>Mobile Number:</td>
-        <td>
-          <h:inputText label="Mobile Number"
-                       id="mobileno" value="#{employeeBean.mobileNumber}" required="true">
-          </h:inputText>
-          <h:message for="mobileno" style="color: red"/>
-        </td>
-      </tr>
-       
-             
-      <tr>
-        <td>Designation:</td>
-        <td>
-          <h:selectOneMenu label="Designation"
-                           value="#{employeeBean.designation}">
-            <f:selectItem itemLabel="Manager" itemValue="manager" />
-            <f:selectItem itemLabel="Executive" itemValue="executive" />
-            <f:selectItem itemLabel="Sr. Manager" itemValue="srmanager" />
-          </h:selectOneMenu>
-        </td>
-      </tr>
-       
-      <tr>
-        <td>Department:</td>
-        <td>
-          <h:selectOneMenu label="Department"
-                           value="#{employeeBean.department}">
-            <f:selectItem itemLabel="Accounts" itemValue="accounts" />
-            <f:selectItem itemLabel="Sales" itemValue="sales" />
-            <f:selectItem itemLabel="Marketing" itemValue="marketing" />
-          </h:selectOneMenu>
-        </td>
-      </tr>
-<tr>
-        <td>Is Permanent?:</td>
-        <td>
-        <h:selectBooleanCheckbox value="#{employeeBean.employeeType}" />
-        </td>
-      </tr>
-       
+        </tr>
+        <tr>
+        <td> Assertiva 2:          
+          <h:inputText  value="#{coffeeQuizController.assertivas[1]}"/>
+          </td>
+          </tr>
+          <tr>
+          <td> Assertiva 3:          
+          <h:inputText  value="#{coffeeQuizController.assertivas[2]}"/>
+          </td>
+          </tr>
+          <tr>
+          <td> Assertiva 4:          
+          <h:inputText  value="#{coffeeQuizController.assertivas[3]}"/>
+          </td>
+          </tr>
+          <tr>
+          <td> Assertiva 5:          
+          <h:inputText  value="#{coffeeQuizController.coffeeQuiz.assertivas[4]}"/>
+          </td>
+          </tr> 
+          <tr>
+          <td> Resposta Correta:          
+          <h:inputText  value="#{coffeeQuizController.coffeeQuiz.respostaCorreta}"/>
+          </td>
+          </tr>          
     </table>
-    <p><h:commandButton value="Submit" action="confirm" /></p>
+    <p><h:commandButton value="Salvar" action="#{coffeeQuizController.cadastrarCoffeeQuiz}" /></p>
   </h:form>
 </h:body>
 </html>

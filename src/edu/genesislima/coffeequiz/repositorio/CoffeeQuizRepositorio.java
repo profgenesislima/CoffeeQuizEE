@@ -11,6 +11,7 @@ public class CoffeeQuizRepositorio {
 	private List<CoffeeQuiz> quizzes = new ArrayList<>();
 	
 	public void salvarCoffeeQuiz(CoffeeQuiz coffeeQuiz) throws CoffeeQuizException {
+		System.out.println("CAFÉ SALVO NO REPOSITÓRIO "+coffeeQuiz.getId());
 		if(verificaQuantidadeRespostas(coffeeQuiz))
 		quizzes.add(coffeeQuiz);
 	}

@@ -24,7 +24,7 @@ public class CoffeeQuizBean implements CoffeeQuizServiceLocal,CoffeeQuizServiceR
 		coffeeQuiz.setId(1);
 		coffeeQuiz.setPergunta("É um café aguado. "
 				+ "Ótimo para para tomar em proporções maiores.");
-		List<String> respostas = new ArrayList<String>(); 
+		ArrayList<String> respostas = new ArrayList<String>(); 
 		 respostas.add("capuccino");
 		 respostas.add("mocha");
 		 respostas.add("pingado");

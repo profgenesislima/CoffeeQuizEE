@@ -33,7 +33,7 @@ public class CoffeeQuizRepositorioTest {
 				+ "sem qualquer mistura com leite ou outro ingrediente. Possuo uma bela "
 				+ "espuma que se forma sobre mim. Esta espuma é originária do "
 				+ "próprio grão moído, e é produzida no momento da extração. Que tipo de café sou eu? ");
-		List<String> respostas = new ArrayList<String>(); 
+		ArrayList<String> respostas = new ArrayList<String>(); 
 		 respostas.add("capuccino");
 		 respostas.add("mocha");
 		 respostas.add("pingado");
@@ -55,7 +55,7 @@ public class CoffeeQuizRepositorioTest {
 		cafeComLeite.setId(2);
 		cafeComLeite.setPergunta("Não guardo segredos. Sou servido na mesma proporção"
 				+ "que meu companheiro, fervido e aquecido. Que tipo de café sou eu? ");
-		List<String> respostas1 = new ArrayList<String>(); 
+		ArrayList<String> respostas1 = new ArrayList<String>(); 
 		 respostas1.add("capuccino");
 		 respostas1.add("mocha");
 		 respostas1.add("pingado");
